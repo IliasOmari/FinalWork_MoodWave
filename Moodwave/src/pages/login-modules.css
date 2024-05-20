@@ -1,0 +1,59 @@
+.login-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 30px;
+}
+input {
+  border: none;
+  border-bottom: 2px solid white;
+  background-color: transparent;
+  width: 95%;
+  outline: none;
+  color: white;
+  font-size: 20px;
+}
+
+.title {
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 280px;
+}
+
+.label_mail {
+  color: white;
+}
+.label_name {
+  color: white;
+}
+.label_password {
+  color: white;
+}
+.submit {
+  background-color: #d43b84;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  width: 175px;
+  height: 47px;
+  display: inline;
+  font-weight: bolder;
+}
+.button {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container div {
+  display: flex;
+  flex-direction: column;
+}
+
+.back {
+  display: flex;
+  position: absolute;
+  top: 70px;
+  left: 20px;
+}

@@ -1,0 +1,82 @@
+.info-user {
+  display: flex;
+  justify-content: space-between;
+  background-color: #692e65;
+  padding: 15px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+.info-user-text {
+  display: flex;
+  gap: 20px;
+}
+.info-user-date h2 {
+  color: white;
+  font-weight: 400;
+  font-size: 18px;
+}
+.info-user-date p {
+  color: #5abaea;
+  font-size: 12px;
+}
+.mood-badge {
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 2px;
+  height: 100%;
+  background-color: #3d1d3b;
+  border-radius: 5px;
+  color: white;
+  font-size: 12px;
+}
+.info-user img {
+  width: 50px;
+  height: 50px;
+}
+.card {
+  background-image: linear-gradient(
+    to right,
+    #d43b84,
+    #c45cb7,
+    #a17cdf,
+    #6d98f8,
+    #0fafff
+  );
+  width: 95%;
+  border-radius: 10px;
+}
+.text-input {
+  border-bottom: none;
+}
+.text-input input {
+  border-bottom: none;
+}
+.likes {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  align-items: center;
+}
+.likes img {
+  width: 20px;
+}
+.save {
+  background-color: white;
+  color: #d43b84;
+  font-weight: 500;
+  border-radius: 20px;
+  border: none;
+  padding: 10px;
+}
+.text-input {
+  padding: 20px;
+  color: white;
+}
+
+.post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}

@@ -1,0 +1,24 @@
+.profile-inputs {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  gap: 1rem;
+  padding-left: 30px;
+}
+
+.avatar {
+  background-color: whitesmoke;
+  border-radius: 1000px;
+  width: 120px;
+  height: 120px;
+  display: block;
+  margin-left: 140px;
+}
+
+.title-create {
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  margin-top: 180px;
+  margin-bottom: 30px;
+}

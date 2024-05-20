@@ -1,0 +1,66 @@
+html {
+  background-color: #260026;
+}
+
+.blog {
+  height: 100vh;
+}
+
+.intro-text h2 {
+  color: #d43b84;
+  font-weight: normal;
+  margin-top: 50px;
+}
+.intro-text {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-bottom: 5px;
+  padding: 10px;
+}
+
+.searchbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 40px;
+  padding: 10px;
+}
+.searchbar input {
+  width: 70%;
+  border-bottom: none;
+  background-color: #3d1d3b;
+  padding: 20px;
+  border-radius: 10px;
+}
+.searchbar img {
+  width: 55px;
+  height: 55px;
+  padding-right: 10px;
+}
+
+.post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.submit-post {
+  background-color: #d43b84;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  width: 150px;
+  height: 47px;
+  display: inline;
+  font-weight: bolder;
+}
+.submit-button {
+  margin-top: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
