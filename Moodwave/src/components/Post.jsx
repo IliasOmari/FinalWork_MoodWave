@@ -1,36 +1,71 @@
 import Avatar from "@mui/joy/Avatar";
-import { CiHeart } from "react-icons/ci";
+import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+
 import "./post-modules.css";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
+const Post = ({ data, user }) => {
+  const like = () => {
+    fetch("http://localhost:3000/like", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: data.uuid, userId: user.uuid }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status == "Bad Request") return alert(data.message);
+        window.location.reload();
+      });
+  };
 
-const Post = () => {
+  const unlike = () => {
+    fetch("http://localhost:3000/like", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: data.uuid, userId: user.uuid }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status == "Bad Request") return alert(data.message);
+        window.location.reload();
+      });
+  };
   return (
-    <div className="post-container">
+    <div className="post-container" style={{ width: "100%" }}>
       <div className="card">
         <div className="info-user">
           <div className="info-user-text">
             <Link to={"/profile"}>
-              <Avatar>I</Avatar>
+              <Avatar src={data.user.profile_image}></Avatar>
             </Link>
             <div className="info-user-date">
-              <h2>Ilias </h2>
-              <p>10 minutes ago</p>
+              <h2>{data.user.username}</h2>
+              <p>
+                {format(data.created_at, "P")} at{" "}
+                {format(data.created_at, "H:mm")}
+              </p>
             </div>
           </div>
           <div className="mood-badge">
-            <p>Happy</p>
+            <p>{data.mood}</p>
           </div>
         </div>
         <div className="text-input">
-          {/* <input type="text" id="user-text" /> */}
-          <p>
-            Not the best day today , but thankfully, MoodWave understood the
-            vibe and curated a playlist to lift my spirits 🎶. The magic of
-            music! Thanks @MoodWaveApp{". "}
-          </p>
-
+          <p>{data.text}</p>
           <div className="likes">
-            <CiHeart size={30} color="white" />
+            {user.likes.length == 0 ? (
+              <FaRegHeart size={30} color="white" onClick={() => like()} />
+            ) : user.likes.find((like) => like.uuid == data.uuid).length ===
+              0 ? (
+              <FaRegHeart size={30} color="white" onClick={() => like()} />
+            ) : (
+              <FaHeart size={30} onClick={() => unlike()} />
+            )}
             <button className="save">Save playlist</button>
           </div>
         </div>
