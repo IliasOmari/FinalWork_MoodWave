@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import ForYou from "./pages/ForYou";
 import Generate from "./pages/Generate";
 import PlaylistPreview from "./pages/PlaylistPreview";
+import { getProfileData } from "./pages/services/service";
 
 const router = createBrowserRouter([
   {
@@ -30,20 +31,24 @@ const router = createBrowserRouter([
   {
     path: "/create-profile",
     element: <CreateProfile />,
+    loader: getProfileData,
   },
   {
     path: "/blog",
     element: <Blog />,
+    loader: getProfileData,
   },
 
   {
     path: "/profile",
     element: <Profile />,
+    loader: getProfileData,
   },
 
   {
     path: "/for-you",
     element: <ForYou />,
+    loader: getProfileData
   },
   {
     path: "/generate",
