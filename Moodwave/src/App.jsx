@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import "./App.css";
 
 function App() {
+  const googleLogin = () => {
+    window.open("http://localhost:3000/auth/google", "_self");
+  };
   return (
     <div className="container-home">
       <div className="background">
@@ -14,9 +17,9 @@ function App() {
           <Link to={"/login"} style={{ textDecoration: "none" }}>
             <button className="signin">Sign in</button>
           </Link>
-          <Link to={"/google"} style={{ textDecoration: "none" }}>
-            <button className="google">Sign in with Google</button>
-          </Link>
+          <button className="google" onClick={googleLogin}>
+            Sign in with Google
+          </button>
           <p>
             You don{"'"}t have an account yet ?
             <Link to={"/sign-up"} style={{ textDecoration: "none" }}>
