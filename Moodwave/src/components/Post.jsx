@@ -8,7 +8,7 @@ import { format } from "date-fns";
 const Post = ({ data, user }) => {
   const navigate = useNavigate();
   const like = () => {
-    fetch("http://localhost:3000/like", {
+    fetch("https://finalwork-moodwave.onrender.com/like", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,7 +23,7 @@ const Post = ({ data, user }) => {
   };
 
   const unlike = () => {
-    fetch("http://localhost:3000/like", {
+    fetch("https://finalwork-moodwave.onrender.com/like", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

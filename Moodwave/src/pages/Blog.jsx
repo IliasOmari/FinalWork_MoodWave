@@ -28,7 +28,7 @@ const Profile = () => {
 
     setIsLoading(true);
 
-    fetch("http://localhost:3000/posts", {
+    fetch("https://finalwork-moodwave.onrender.com/posts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const Profile = () => {
 
   useEffect(() => {
     async function getPosts() {
-      fetch("http://localhost:3000/posts")
+      fetch("https://finalwork-moodwave.onrender.com/posts")
         .then((res) => res.json())
         .then((data) => {
           setPosts(data.data);

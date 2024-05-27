@@ -45,7 +45,7 @@ const Profile = () => {
   const navigate = useNavigate();
   const user = useLoaderData();
   const unlike = (likeId) => {
-    fetch("http://localhost:3000/like", {
+    fetch("https://finalwork-moodwave.onrender.com/like", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const Profile = () => {
   };
 
   const unlikeMusic = (musicId) => {
-    fetch("http://localhost:3000/likeMusic", {
+    fetch("https://finalwork-moodwave.onrender.com/likeMusic", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

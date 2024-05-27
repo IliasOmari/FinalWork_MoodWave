@@ -18,7 +18,7 @@ const SignUp = () => {
       return;
     }
     setIsLoading(true);
-    fetch("http://localhost:3000/register", {
+    fetch("https://finalwork-moodwave.onrender.com/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

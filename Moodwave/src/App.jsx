@@ -3,7 +3,7 @@ import "./App.css";
 
 function App() {
   const googleLogin = () => {
-    window.open("http://localhost:3000/auth/google", "_self");
+    window.open("https://finalwork-moodwave.onrender.com/auth/google", "_self");
   };
   return (
     <div className="container-home">
