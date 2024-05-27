@@ -16,10 +16,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: [
-      "http://localhost:5173",
-      "https://finalwork-moodwave-api.onrender.com",
-    ],
+    origin: "https://finalwork-moodwave-api.onrender.com",
   })
 );
 app.use(
