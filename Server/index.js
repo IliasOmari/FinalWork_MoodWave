@@ -25,6 +25,12 @@ app.use(
     resave: false,
     saveUninitialized: false,
     proxy: true,
+    cookie: {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 100,
+      secure: true,
+      sameSite: "none",
+    },
   })
 );
 app.use(passport.initialize());
