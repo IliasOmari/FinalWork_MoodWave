@@ -39,7 +39,7 @@ const ForYou = () => {
   };
 
   const like = () => {
-    fetch("https://finalwork-moodwave.onrender.com/likeMusic", {
+    fetch("https://finalwork-moodwave-api.onrender.com/likeMusic", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ const ForYou = () => {
   };
 
   const unlike = () => {
-    fetch("https://finalwork-moodwave.onrender.com/likeMusic", {
+    fetch("https://finalwork-moodwave-api.onrender.com/likeMusic", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

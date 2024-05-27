@@ -36,7 +36,7 @@ const CreateProfile = () => {
 
     setIsLoading(true);
 
-    fetch("https://finalwork-moodwave.onrender.com/updateProfile", {
+    fetch("https://finalwork-moodwave-api.onrender.com/updateProfile", {
       method: "PUT",
       credentials: "include",
       headers: {

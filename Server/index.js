@@ -18,7 +18,7 @@ app.use(
     credentials: true,
     origin: [
       "http://localhost:5173",
-      "https://finalwork-moodwave.onrender.com",
+      "https://finalwork-moodwave-api.onrender.com",
     ],
   })
 );

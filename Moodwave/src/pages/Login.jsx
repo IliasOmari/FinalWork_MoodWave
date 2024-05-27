@@ -15,7 +15,7 @@ const Login = () => {
       return;
     }
     setIsLoading(true);
-    fetch("https://finalwork-moodwave.onrender.com/login", {
+    fetch("https://finalwork-moodwave-api.onrender.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
