@@ -44,11 +44,3 @@
 .music-list p {
   color: white;
 } 
-
-/* .music-list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  gap: 20px;
-}
