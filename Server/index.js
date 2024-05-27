@@ -13,7 +13,15 @@ const client = new MongoClient(process.env.MONGO_URL);
 require("./passport");
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(
+  cors({
+    credentials: true,
+    origin: [
+      "http://localhost:5173",
+      "https://finalwork-moodwave.onrender.com",
+    ],
+  })
+);
 app.use(
   session({
     secret: "moodwave",
