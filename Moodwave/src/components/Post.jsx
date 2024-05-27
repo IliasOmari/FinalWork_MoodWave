@@ -3,9 +3,10 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 
 import "./post-modules.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 const Post = ({ data, user }) => {
+  const navigate = useNavigate();
   const like = () => {
     fetch("http://localhost:3000/like", {
       method: "POST",
@@ -17,7 +18,7 @@ const Post = ({ data, user }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status == "Bad Request") return alert(data.message);
-        window.location.reload();
+        navigate("/blog");
       });
   };
 
@@ -32,7 +33,7 @@ const Post = ({ data, user }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status == "Bad Request") return alert(data.message);
-        window.location.reload();
+        navigate("/blog");
       });
   };
   return (
@@ -60,8 +61,7 @@ const Post = ({ data, user }) => {
           <div className="likes">
             {user.likes.length == 0 ? (
               <FaRegHeart size={30} color="white" onClick={() => like()} />
-            ) : user.likes.find((like) => like.uuid == data.uuid).length ===
-              0 ? (
+            ) : !user.likes.find((like) => like.uuid == data.uuid) ? (
               <FaRegHeart size={30} color="white" onClick={() => like()} />
             ) : (
               <FaHeart size={30} onClick={() => unlike()} />

@@ -2,7 +2,7 @@ import "./blog-modules.css";
 import Avatar from "@mui/joy/Avatar";
 import Navbar from "../components/Navbar";
 import Post from "../components/Post";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
 import Typography from "@mui/joy/Typography";
@@ -69,7 +69,7 @@ const Profile = () => {
           <div className="blog">
             <div className="intro-text">
               <h2>Hi {user.username} 👋🏻</h2>
-              <p>What{"'"}s bothering you?</p>
+              <p>What do you want to share?</p>
             </div>
 
             <div className="searchbar">
@@ -185,7 +185,7 @@ const Profile = () => {
 
             <div className="post">
               {posts.length === 0 ? (
-                <p style={{ color: "white" }}>No posts </p>
+                <p style={{ color: "white" }}>No posts for the moment ! </p>
               ) : (
                 posts
                   .sort(

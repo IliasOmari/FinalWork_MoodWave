@@ -1,7 +1,7 @@
 import { Sidebar } from "primereact/sidebar";
 import Navbar from "../components/Navbar";
 import "./generate-modules.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const Generate = () => {
   const [visibleBottom, setVisibleBottom] = useState(false);
   return (

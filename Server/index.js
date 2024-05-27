@@ -54,6 +54,7 @@ app.post("/register", async (req, res) => {
       genres: [],
       likes: [],
       playlist: [],
+      music: [],
       profile_image: null,
       created_at: new Date(),
       uuid: uuidv4(),
@@ -176,7 +177,70 @@ app.delete("/like", async (req, res) => {
     await client.close();
   }
 });
+app.delete("/likeMusic", async (req, res) => {
+  if (!req.body.musicId || !req.body.userId) {
+    res.status(400).json({
+      status: "Bad Request",
+      message: "Missing Id",
+    });
+    return;
+  }
+  try {
+    await client.connect();
+    const colliUser = client.db("moodwave").collection("users");
 
+    await colliUser.updateOne(
+      { uuid: req.body.userId },
+      {
+        $pull: { music: { id: req.body.musicId } },
+      }
+    );
+    res.status(201).json({
+      status: "Saved",
+      message: "Music successfully unliked",
+    });
+    return;
+  } catch (error) {
+    res.status(500).json({
+      error: "something went wrong",
+      value: error,
+    });
+  } finally {
+    await client.close();
+  }
+});
+app.post("/likeMusic", async (req, res) => {
+  console.log(req.body);
+  if (!req.body.userId || !req.body.music) {
+    res.status(400).json({
+      status: "Bad Request",
+      message: "Missing Id",
+    });
+    return;
+  }
+  try {
+    await client.connect();
+    const colliUser = client.db("moodwave").collection("users");
+    await colliUser.updateOne(
+      { uuid: req.body.userId },
+      {
+        $push: { music: req.body.music },
+      }
+    );
+    res.status(201).json({
+      status: "Saved",
+      message: "Music successfully liked",
+    });
+    return;
+  } catch (error) {
+    res.status(500).json({
+      error: "something went wrong",
+      value: error,
+    });
+  } finally {
+    await client.close();
+  }
+});
 app.get("/posts", async (req, res) => {
   try {
     await client.connect();
@@ -343,6 +407,8 @@ app.post("/profile", async (req, res) => {
       error: "An error has occured!",
       value: error,
     });
+  } finally {
+    await client.close();
   }
 });
 

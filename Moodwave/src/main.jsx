@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { PrimeReactProvider } from "primereact/api";
@@ -13,7 +13,6 @@ import ForYou from "./pages/ForYou";
 import Generate from "./pages/Generate";
 import PlaylistPreview from "./pages/PlaylistPreview";
 import { getProfileData } from "./pages/services/service";
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,7 +47,7 @@ const router = createBrowserRouter([
   {
     path: "/for-you",
     element: <ForYou />,
-    loader: getProfileData
+    loader: getProfileData,
   },
   {
     path: "/generate",
@@ -61,10 +60,11 @@ const router = createBrowserRouter([
   },
 ]);
 
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <PrimeReactProvider>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
     </PrimeReactProvider>
   </React.StrictMode>
 );

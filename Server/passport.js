@@ -30,6 +30,7 @@ passport.use(
           created_at: new Date(),
           likes: [],
           playlist: [],
+          music: [],
           uuid: uuidv4(),
         };
         await colli.insertOne(user);

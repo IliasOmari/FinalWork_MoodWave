@@ -38,13 +38,14 @@
   border: none;
 }
 .music-list img {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
 }
 .music-list p {
   color: white;
-}
-.music-list {
+} 
+
+/* .music-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
