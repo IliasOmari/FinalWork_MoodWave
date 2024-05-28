@@ -1,6 +1,6 @@
 export async function getProfileData() {
   if (localStorage.getItem("id")) {
-    const res = await fetch("http://localhost:3000/profile", {
+    const res = await fetch("https://finalwork-moodwave-api.onrender.com/profile", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -11,7 +11,7 @@ export async function getProfileData() {
     if (data.status == "Bad Request") return null;
     return data;
   } else {
-    const res = await fetch("http://localhost:3000/auth/google/success", {
+    const res = await fetch("https://finalwork-moodwave-api.onrender.com/auth/google/success", {
       credentials: "include",
     });
     const data = await res.json();
