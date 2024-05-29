@@ -215,7 +215,14 @@ const Profile = () => {
                   ))
               )
             ) : user.playlist.length == 0 ? (
-              <p> No liked posts for the moment!</p>
+              <p
+                style={{
+                  color: "white",
+                  marginBottom: "20px",
+                }}
+              >
+                No playlists for the moment!
+              </p>
             ) : (
               user.playlist
                 .filter((el) =>
