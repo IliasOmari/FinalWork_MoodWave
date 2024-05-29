@@ -167,8 +167,6 @@ app.post("/like", async (req, res) => {
 });
 
 app.post("/playlistAI", async (req, res) => {
-  console.log(req.body.playlist);
-  console.log(req.body.userId);
   if (!req.body.playlist || !req.body.userId) {
     res.status(400).json({
       status: "Bad Request",
@@ -183,6 +181,38 @@ app.post("/playlistAI", async (req, res) => {
       { uuid: req.body.userId },
       {
         $push: { playlistAI: req.body.playlist },
+      }
+    );
+    res.status(201).json({
+      status: "Saved",
+      message: "Playlist successfully saved",
+    });
+    return;
+  } catch (error) {
+    res.status(500).json({
+      error: "something went wrong",
+      value: error,
+    });
+  } finally {
+    await client.close();
+  }
+});
+
+app.post("/playlist", async (req, res) => {
+  if (!req.body.playlist || !req.body.userId) {
+    res.status(400).json({
+      status: "Bad Request",
+      message: "Missing Id",
+    });
+    return;
+  }
+  try {
+    await client.connect();
+    const colliUser = client.db("moodwave").collection("users");
+    await colliUser.updateOne(
+      { uuid: req.body.userId },
+      {
+        $push: { playlist: req.body.playlist },
       }
     );
     res.status(201).json({
@@ -253,6 +283,53 @@ app.delete("/likeMusic", async (req, res) => {
       status: "Saved",
       message: "Music successfully unliked",
     });
+    return;
+  } catch (error) {
+    res.status(500).json({
+      error: "something went wrong",
+      value: error,
+    });
+  } finally {
+    await client.close();
+  }
+});
+
+app.delete("/playlist", async (req, res) => {
+  if (!req.body.name || !req.body.userId || !req.body.filter) {
+    res.status(400).json({
+      status: "Bad Request",
+      message: "Missing data",
+    });
+    return;
+  }
+  try {
+    await client.connect();
+    const colliUser = client.db("moodwave").collection("users");
+    if (req.body.filter == "AI") {
+      console.log("here");
+      await colliUser.updateOne(
+        { uuid: req.body.userId },
+        {
+          $pull: { playlistAI: { name: req.body.name } },
+        }
+      );
+      res.status(201).json({
+        status: "Saved",
+        message: "Playlist successfully unliked",
+      });
+      return;
+    } else {
+      await colliUser.updateOne(
+        { uuid: req.body.userId },
+        {
+          $pull: { playlist: { name: req.body.name } },
+        }
+      );
+      res.status(201).json({
+        status: "Saved",
+        message: "Playlist successfully unliked",
+      });
+    }
     return;
   } catch (error) {
     res.status(500).json({
