@@ -67,6 +67,7 @@ app.post("/register", async (req, res) => {
       genres: [],
       likes: [],
       playlist: [],
+      playlistAI:[],
       music: [],
       profile_image: null,
       created_at: new Date(),

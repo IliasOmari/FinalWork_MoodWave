@@ -31,6 +31,7 @@ passport.use(
           created_at: new Date(),
           likes: [],
           playlist: [],
+          playlistAI: [],
           music: [],
           uuid: uuidv4(),
         };
