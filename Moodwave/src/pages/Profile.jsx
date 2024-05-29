@@ -177,7 +177,14 @@ const Profile = () => {
             </div>
             {filter == "AI" ? (
               user.playlistAI.length == 0 ? (
-                <p>No playlist</p>
+                <p
+                  style={{
+                    color: "white",
+                    marginBottom: "20px",
+                  }}
+                >
+                  No playlists for the moment!
+                </p>
               ) : (
                 user.playlistAI
                   .filter((el) =>
@@ -208,7 +215,7 @@ const Profile = () => {
                   ))
               )
             ) : user.playlist.length == 0 ? (
-              <p>Normal playlist</p>
+              <p> No liked posts for the moment!</p>
             ) : (
               user.playlist
                 .filter((el) =>
@@ -241,16 +248,25 @@ const Profile = () => {
 
             <div className="saved-posts">
               <h2>Liked Posts</h2>
-              {user.likes.length == 0
-                ? "No likes "
-                : user.likes.map((like) => (
-                    <div key={like.uuid} className="post-input">
-                      <p>{like.text}</p>
-                      <div className="post-likes">
-                        <FaHeart size={20} onClick={() => unlike(like.uuid)} />
-                      </div>
+              {user.likes.length == 0 ? (
+                <p
+                  style={{
+                    color: "white",
+                    marginBottom: "20px",
+                  }}
+                >
+                  No liked posts for the moment!
+                </p>
+              ) : (
+                user.likes.map((like) => (
+                  <div key={like.uuid} className="post-input">
+                    <p>{like.text}</p>
+                    <div className="post-likes">
+                      <FaHeart size={20} onClick={() => unlike(like.uuid)} />
                     </div>
-                  ))}
+                  </div>
+                ))
+              )}
             </div>
             <div style={{ marginBottom: "80px" }}>
               <h1
@@ -262,93 +278,101 @@ const Profile = () => {
               >
                 Liked songs
               </h1>
-              {user.music.length == 0
-                ? "No music"
-                : user.music.map((track) => (
+              {user.music.length == 0 ? (
+                <p
+                  style={{
+                    color: "white",
+                  }}
+                >
+                  No liked songs for the moment!
+                </p>
+              ) : (
+                user.music.map((track) => (
+                  <div
+                    key={track.id}
+                    className="selected-playlist"
+                    style={{
+                      marginBottom: "30px",
+                      color: "white",
+                      overflowX: "hidden",
+                    }}
+                  >
                     <div
-                      key={track.id}
-                      className="selected-playlist"
                       style={{
-                        marginBottom: "30px",
-                        color: "white",
-                        overflowX: "hidden",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
                       }}
                     >
                       <div
+                        className="music-list-text"
                         style={{
                           display: "flex",
-                          justifyContent: "space-between",
                           alignItems: "center",
+                          gap: "10px",
                         }}
                       >
-                        <div
-                          className="music-list-text"
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "10px",
-                          }}
-                        >
-                          <img
-                            src={track.album.images[0].url}
-                            style={{ width: "80px", height: "80px" }}
-                          />
-                          <div>
-                            <p
-                              style={{
-                                fontWeight: "bold",
-                                color:
-                                  selected.name == track.name
-                                    ? "#d43b84"
-                                    : "white",
-                              }}
-                            >
-                              {track.name}
-                            </p>
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "start",
-                                gap: "5px",
-                              }}
-                            >
-                              {track.artists.map((art, index) => (
-                                <p key={index}>{art.name}</p>
-                              ))}
-                            </div>
+                        <img
+                          src={track.album.images[0].url}
+                          style={{ width: "80px", height: "80px" }}
+                        />
+                        <div>
+                          <p
+                            style={{
+                              fontWeight: "bold",
+                              color:
+                                selected.name == track.name
+                                  ? "#d43b84"
+                                  : "white",
+                            }}
+                          >
+                            {track.name}
+                          </p>
+                          <div
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "start",
+                              gap: "5px",
+                            }}
+                          >
+                            {track.artists.map((art, index) => (
+                              <p key={index}>{art.name}</p>
+                            ))}
                           </div>
                         </div>
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "20px",
-                          }}
-                        >
-                          {selected.name === track.name ? (
-                            <FaPause
-                              size={20}
-                              color="white"
-                              alignmentBaseline="center"
-                              onClick={handlePauseMusic}
-                            />
-                          ) : (
-                            <FaPlay
-                              size={20}
-                              color="white"
-                              alignmentBaseline="center"
-                              onClick={() => handlePlayMusic(track)}
-                            />
-                          )}
-                          <FaHeart
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "20px",
+                        }}
+                      >
+                        {selected.name === track.name ? (
+                          <FaPause
                             size={20}
-                            onClick={() => unlikeMusic(track.id)}
+                            color="white"
+                            alignmentBaseline="center"
+                            onClick={handlePauseMusic}
                           />
-                        </div>
+                        ) : (
+                          <FaPlay
+                            size={20}
+                            color="white"
+                            alignmentBaseline="center"
+                            onClick={() => handlePlayMusic(track)}
+                          />
+                        )}
+                        <FaHeart
+                          size={20}
+                          onClick={() => unlikeMusic(track.id)}
+                        />
                       </div>
                     </div>
-                  ))}
+                  </div>
+                ))
+              )}
             </div>
           </div>
           <Navbar />
