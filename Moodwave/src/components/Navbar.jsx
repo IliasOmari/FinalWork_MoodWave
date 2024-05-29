@@ -20,22 +20,22 @@ const Navbar = () => {
           display: "flex",
           backgroundColor: "#692e65",
           bottom: "0px",
-          padding: "20px",
-          gap: "16px",
+          padding: "15px",
+
           justifyContent: "space-between",
         }}
       >
         <Link to={"/blog"}>
-          <RiHome2Line color="white" size={30} />
+          <RiHome2Line color="white" size={27} />
         </Link>
         <Link to={"/for-you"}>
-          <TbMusicSearch color="white" size={30} />
+          <TbMusicSearch color="white" size={27} />
         </Link>
         <Link to={"/generate"}>
-          <RiAiGenerate color="white" size={30} />
+          <RiAiGenerate color="white" size={27} />
         </Link>
         <Link to={"/profile"}>
-          <FaRegUser color="white" size={30} />
+          <FaRegUser color="white" size={27} />
         </Link>
       </div>
     </div>

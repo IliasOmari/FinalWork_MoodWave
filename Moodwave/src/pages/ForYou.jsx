@@ -86,7 +86,7 @@ const ForYou = () => {
         method: "GET",
         headers: {
           "X-RapidAPI-Key":
-            "3d9c9044d8msh5fb2a012bfc439dp175776jsndd692ace4c1f",
+            "e5f53c1545msh0bddb9823147273p142115jsn541d08fcf2f3",
           "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
         },
       };
@@ -207,18 +207,6 @@ const ForYou = () => {
               <p>Discover some songs here!</p>
             </div>
             <div className="for-you">
-              {/* <div className="searchbar-music">
-          <Avatar>IO</Avatar>
-          <input
-            type="text"
-            id="searchbar"
-            placeholder="Share everything you want."
-          />
-        </div> */}
-              {/* <div className="popular">
-          <h2>Popular Now</h2>
-          <Caroussel />
-        </div> */}
               <div className="recently-played">
                 <h2>Selected for you</h2>
                 {tracks.map((track) => (

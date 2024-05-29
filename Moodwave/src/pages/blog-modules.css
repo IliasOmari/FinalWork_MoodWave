@@ -16,7 +16,7 @@ html {
   display: flex;
   flex-direction: column;
   margin-left: 20px;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
   padding: 10px;
 }
 
@@ -31,8 +31,9 @@ html {
   width: 70%;
   border-bottom: none;
   background-color: #3d1d3b;
-  padding: 20px;
+  padding: 15px;
   border-radius: 10px;
+  font-size: 14px;
 }
 .searchbar img {
   width: 55px;

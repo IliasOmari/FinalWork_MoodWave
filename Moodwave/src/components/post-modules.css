@@ -13,7 +13,7 @@
 .info-user-date h2 {
   color: white;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
 }
 .info-user-date p {
   color: #5abaea;
@@ -79,4 +79,5 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+  padding: 5px;
 }

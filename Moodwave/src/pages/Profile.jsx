@@ -130,6 +130,7 @@ const Profile = () => {
                     backgroundColor: "#5ABAEA",
                     padding: "7px",
                     borderRadius: "10px",
+                    fontSize: "14px",
                   }}
                   key={index}
                 >
@@ -174,39 +175,11 @@ const Profile = () => {
                 </button>
               </div>
             </div>
-            {filter == "AI"
-              ? user.playlistAI.length == 0
-                ? "No generated playlist"
-                : user.playlistAI
-                    .filter((el) =>
-                      el.name.toLowerCase().includes(search.toLowerCase())
-                    )
-                    .map((el) => (
-                      <div
-                        key={el.name}
-                        className="list-playlists"
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <Link
-                          style={{ color: "white", textDecoration: "none" }}
-                          to={`/playlist-preview/${el.name}`}
-                          state={filter}
-                        >
-                          <p>{el.name}</p>
-                        </Link>
-                        <FaHeart
-                          size={25}
-                          onClick={() => unlikePlaylist(el.name)}
-                        />
-                      </div>
-                    ))
-              : user.playlist.length == 0
-              ? "No playlist"
-              : user.playlist
+            {filter == "AI" ? (
+              user.playlistAI.length == 0 ? (
+                <p>No playlist</p>
+              ) : (
+                user.playlistAI
                   .filter((el) =>
                     el.name.toLowerCase().includes(search.toLowerCase())
                   )
@@ -232,7 +205,39 @@ const Profile = () => {
                         onClick={() => unlikePlaylist(el.name)}
                       />
                     </div>
-                  ))}
+                  ))
+              )
+            ) : user.playlist.length == 0 ? (
+              <p>Normal playlist</p>
+            ) : (
+              user.playlist
+                .filter((el) =>
+                  el.name.toLowerCase().includes(search.toLowerCase())
+                )
+                .map((el) => (
+                  <div
+                    key={el.name}
+                    className="list-playlists"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Link
+                      style={{ color: "white", textDecoration: "none" }}
+                      to={`/playlist-preview/${el.name}`}
+                      state={filter}
+                    >
+                      <p>{el.name}</p>
+                    </Link>
+                    <FaHeart
+                      size={25}
+                      onClick={() => unlikePlaylist(el.name)}
+                    />
+                  </div>
+                ))
+            )}
 
             <div className="saved-posts">
               <h2>Liked Posts</h2>
@@ -247,7 +252,7 @@ const Profile = () => {
                     </div>
                   ))}
             </div>
-            <div>
+            <div style={{ marginBottom: "80px" }}>
               <h1
                 style={{
                   fontSize: "24px",

@@ -29,6 +29,7 @@
 .recently-played h2 {
   color: white;
   margin-bottom: 20px;
+  font-size: 20px;
 }
 .selected h2 {
   color: white;
@@ -38,21 +39,4 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-.trending-artists h2 {
-  color: white;
-  margin-bottom: 20px;
-}
-.trending-artists img {
-  width: 80px;
-  border-radius: 10px;
-}
-.trending-artists p {
-  color: white;
-}
-.trending-artist-content {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  flex-wrap: wrap;
 }
