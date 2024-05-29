@@ -16,7 +16,10 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: ["https://finalwork-moodwave.onrender.com", 'http://localhost:5173'],
+    origin: [
+      "https://finalwork-moodwave.onrender.com",
+      "http://localhost:5173",
+    ],
   })
 );
 app.use(
@@ -88,7 +91,7 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/posts", async (req, res) => {
-  if (!req.body.mood || !req.body.text) {
+  if (!req.body.mood || !req.body.text || !req.body.playlist) {
     res.status(400).json({
       status: "Bad Request",
       message: "Missing mood, text, playlist",
@@ -97,11 +100,17 @@ app.post("/posts", async (req, res) => {
   }
   try {
     await client.connect();
+
+    const userColli = client.db("moodwave").collection("users");
+    const user = await userColli.findOne({ uuid: req.body.user.uuid });
+
+    const playlist = user.playlistAI.find((el) => el.name == req.body.playlist);
     const colli = client.db("moodwave").collection("posts");
     const post = {
       user: req.body.user,
       text: req.body.text,
       mood: req.body.mood,
+      playlist,
       created_at: new Date(),
       uuid: uuidv4(),
     };
@@ -145,6 +154,40 @@ app.post("/like", async (req, res) => {
     res.status(201).json({
       status: "Saved",
       message: "Post successfully liked",
+    });
+    return;
+  } catch (error) {
+    res.status(500).json({
+      error: "something went wrong",
+      value: error,
+    });
+  } finally {
+    await client.close();
+  }
+});
+
+app.post("/playlistAI", async (req, res) => {
+  console.log(req.body.playlist);
+  console.log(req.body.userId);
+  if (!req.body.playlist || !req.body.userId) {
+    res.status(400).json({
+      status: "Bad Request",
+      message: "Missing Id",
+    });
+    return;
+  }
+  try {
+    await client.connect();
+    const colliUser = client.db("moodwave").collection("users");
+    await colliUser.updateOne(
+      { uuid: req.body.userId },
+      {
+        $push: { playlistAI: req.body.playlist },
+      }
+    );
+    res.status(201).json({
+      status: "Saved",
+      message: "Playlist successfully saved",
     });
     return;
   } catch (error) {
