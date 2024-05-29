@@ -77,7 +77,7 @@ const Profile = () => {
   };
 
   const unlikePlaylist = (name) => {
-    fetch("http://localhost:3000/playlist", {
+    fetch("ttps://finalwork-moodwave-api.onrender.com/playlist", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
