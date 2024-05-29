@@ -9,7 +9,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 .background {
-  height: 100vh;
+  height: 100dvh;
   background-image: url("./assets/background.svg");
   background-position: center;
   overflow: hidden;
