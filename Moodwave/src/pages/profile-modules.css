@@ -35,7 +35,7 @@ html {
 }
 .playlist h2 {
   color: white;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .playlist-buttons {
   display: flex;
@@ -48,8 +48,6 @@ html {
   border-radius: 20px;
   padding: 10px;
   border: none;
-  background-color: #d43b84;
-  color: white;
   font-weight: bolder;
 }
 .saved {
@@ -57,8 +55,7 @@ html {
   border-radius: 20px;
   padding: 10px;
   border: none;
-  background-color: white;
-  color: #d43b84;
+
   font-weight: bolder;
 }
 .list-playlists {
@@ -70,12 +67,12 @@ html {
   background-color: #692e65;
   border-radius: 10px;
   width: 90%;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   text-decoration: none;
 }
 .saved-posts h2 {
   color: white;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .post-input {
@@ -89,6 +86,7 @@ html {
   );
   border-radius: 10px;
   color: white;
+  margin-bottom: 15px;
 }
 
 .post-input p {

@@ -13,15 +13,17 @@ import { Navigate, useLoaderData } from "react-router-dom";
 import Moods from "./moods.json";
 import Select from "react-select";
 import { BeatLoader } from "react-spinners";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
   const user = useLoaderData();
-  const [inputs, setInputs] = useState({ mood: "", text: "" });
+  const [inputs, setInputs] = useState({ mood: "", text: "", playlist: "" });
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const createPost = () => {
-    if (!inputs.text || !inputs.mood) {
+    if (!inputs.text || !inputs.mood || !inputs.playlist) {
       alert("Please fill in the missing fields");
       return;
     }
@@ -37,6 +39,7 @@ const Profile = () => {
         user: user,
         text: inputs.text,
         mood: inputs.mood,
+        playlist: inputs.playlist,
       }),
     })
       .then((res) => res.json())
@@ -49,6 +52,7 @@ const Profile = () => {
         window.location.reload();
       });
   };
+
 
   useEffect(() => {
     async function getPosts() {
@@ -73,8 +77,9 @@ const Profile = () => {
             </div>
 
             <div className="searchbar">
-              <Avatar src={user.profile_image} size="lg"></Avatar>
-
+              <Link to={"/profile"}>
+                <Avatar src={user.profile_image} size="lg"></Avatar>
+              </Link>
               <input
                 onClick={() => setOpen(true)}
                 type="text"
@@ -173,7 +178,21 @@ const Profile = () => {
                   marginBottom={"10px"}
                 >
                   <p style={{ marginBottom: "10px" }}> Share your playlist </p>
-                  <SelectIndicator />
+                  <Select
+                    onChange={(e) =>
+                      setInputs((prev) => ({ ...prev, playlist: e.value }))
+                    }
+                    styles={{
+                      container: (baseStyles) => ({
+                        ...baseStyles,
+                        color: "black",
+                        width: "95%",
+                      }),
+                    }}
+                    options={user.playlistAI.map((el) => {
+                      return { value: el.name, label: el.name };
+                    })}
+                  />
                 </Typography>
                 <div className="submit-button">
                   <button className="submit-post" onClick={createPost}>

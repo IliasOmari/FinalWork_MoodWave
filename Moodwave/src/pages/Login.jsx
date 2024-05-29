@@ -3,6 +3,7 @@ import BackButton from "../assets/backbutton.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { BeatLoader } from "react-spinners";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const [inputs, setInputs] = useState({ email: "", password: "" });
@@ -11,7 +12,14 @@ const Login = () => {
   const login = (e) => {
     e.preventDefault();
     if (!inputs.email || !inputs.password) {
-      alert("Please fill in the missing fields");
+      toast.error("Please fill in the missing fields", {
+        duration: 4000,
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+        icon: "✍️",
+      });
       return;
     }
     setIsLoading(true);
@@ -26,7 +34,14 @@ const Login = () => {
       .then((data) => {
         if (data.status === "Bad Request") {
           setIsLoading(false);
-          alert(data.message);
+          toast.error(data.message, {
+            duration: 4000,
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+            icon: "❌",
+          });
           return;
         }
         localStorage.setItem("id", data.user);
@@ -36,6 +51,7 @@ const Login = () => {
   return (
     <>
       <div className="background">
+        <Toaster position="top-center" reverseOrder={false} />
         <div className="back">
           <Link to={"/"}>
             <img src={BackButton} alt="backbutton" />

@@ -19,32 +19,37 @@
 
 .bowl {
   left: 35px;
-  background: lightgrey;
   width: 370px;
   height: 370px;
   border-radius: 50%;
   z-index: 0;
   position: absolute;
-  /* box-shadow: 0 10px 2px -10px #2e6789, 35px 90px 210px 2px #36779d,
-    45px 65px 50px -35px #36779d; */
-
-  /* animation: identifier 0.5s infinite; */
+  background: linear-gradient(304deg, #00ff8f, #00a1ff, #d43b84, #ffff00);
+  -webkit-animation: Bowlanimation 0s ease infinite;
+  animation: Bowlanimation 0s ease infinite;
 }
 
-.bowl::after {
-  background-image: radial-gradient(
-    circle at 38% 40%,
-    #00ff8f,
-    #00a1ff,
-    #d43b84,
-    #ffff00
-  );
-  content: "";
-  width: 370px;
-  height: 370px;
-  border-radius: 50%;
-  z-index: 0;
-  position: absolute;
+@-webkit-keyframes Bowlanimation {
+  0% {
+    background-position: 67% 0%;
+  }
+  50% {
+    background-position: 34% 100%;
+  }
+  100% {
+    background-position: 67% 0%;
+  }
+}
+@keyframes Bowlanimation {
+  0% {
+    background-position: 67% 0%;
+  }
+  50% {
+    background-position: 34% 100%;
+  }
+  100% {
+    background-position: 67% 0%;
+  }
 }
 
 .next {
@@ -66,14 +71,3 @@
 .bowl {
   margin-top: 50px;
 }
-.next-button {
-  position: absolute;
-  left: 170px;
-  bottom: 100px;
-}
-
-/* @keyframes identifier {
-  100% {
-    transform: rotate(360deg);
-  }
-} */

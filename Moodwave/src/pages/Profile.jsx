@@ -6,6 +6,8 @@ import { Link, Navigate, useLoaderData, useNavigate } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 
 const Profile = () => {
+  const [filter, setFilter] = useState("AI");
+  const [search, setSearch] = useState("");
   const audioRef = useRef();
   const [audio, setAudio] = useState(null);
   const [selected, setSelected] = useState({});
@@ -74,6 +76,20 @@ const Profile = () => {
       });
   };
 
+  const unlikePlaylist = (name) => {
+    fetch("http://localhost:3000/playlist", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name, userId: user.uuid, filter }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status == "Bad Request") return alert(data.message);
+        navigate("/profile");
+      });
+  };
   return (
     <>
       {!user ? (
@@ -128,20 +144,96 @@ const Profile = () => {
                   type="text"
                   id="searchbar"
                   placeholder="Search your playlist...."
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
               <div className="playlist-buttons">
-                <button className="generated">AI generated</button>
-                <button className="saved">Saved</button>
+                <button
+                  style={{
+                    color: filter == "AI" ? "white" : "#d43b84",
+                    background: filter == "AI" ? "#d43b84" : "white",
+                  }}
+                  className="generated"
+                  onClick={() => {
+                    setFilter("AI");
+                  }}
+                >
+                  AI generated
+                </button>
+                <button
+                  style={{
+                    color: filter == "normal" ? "white" : "#d43b84",
+                    background: filter == "normal" ? "#d43b84" : "white",
+                  }}
+                  className="saved"
+                  onClick={() => {
+                    setFilter("normal");
+                  }}
+                >
+                  Saved
+                </button>
               </div>
             </div>
-            <Link to={"/playlist-preview"}>
-              <div className="list-playlists">
-                <p>Title of the playlist</p>
+            {filter == "AI"
+              ? user.playlistAI.length == 0
+                ? "No generated playlist"
+                : user.playlistAI
+                    .filter((el) =>
+                      el.name.toLowerCase().includes(search.toLowerCase())
+                    )
+                    .map((el) => (
+                      <div
+                        key={el.name}
+                        className="list-playlists"
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Link
+                          style={{ color: "white", textDecoration: "none" }}
+                          to={`/playlist-preview/${el.name}`}
+                          state={filter}
+                        >
+                          <p>{el.name}</p>
+                        </Link>
+                        <FaHeart
+                          size={25}
+                          onClick={() => unlikePlaylist(el.name)}
+                        />
+                      </div>
+                    ))
+              : user.playlist.length == 0
+              ? "No playlist"
+              : user.playlist
+                  .filter((el) =>
+                    el.name.toLowerCase().includes(search.toLowerCase())
+                  )
+                  .map((el) => (
+                    <div
+                      key={el.name}
+                      className="list-playlists"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        to={`/playlist-preview/${el.name}`}
+                        state={filter}
+                      >
+                        <p>{el.name}</p>
+                      </Link>
+                      <FaHeart
+                        size={25}
+                        onClick={() => unlikePlaylist(el.name)}
+                      />
+                    </div>
+                  ))}
 
-                <FaPlay size={20} />
-              </div>
-            </Link>
             <div className="saved-posts">
               <h2>Liked Posts</h2>
               {user.likes.length == 0
@@ -155,16 +247,15 @@ const Profile = () => {
                     </div>
                   ))}
             </div>
-
             <div>
               <h1
                 style={{
                   fontSize: "24px",
                   color: "white",
-                  marginBottom: "10px",
+                  marginBottom: "20px",
                 }}
               >
-                Liked musics
+                Liked songs
               </h1>
               {user.music.length == 0
                 ? "No music"
@@ -232,21 +323,21 @@ const Profile = () => {
                         >
                           {selected.name === track.name ? (
                             <FaPause
-                              size={30}
+                              size={25}
                               color="white"
                               alignmentBaseline="center"
                               onClick={handlePauseMusic}
                             />
                           ) : (
                             <FaPlay
-                              size={30}
+                              size={25}
                               color="white"
                               alignmentBaseline="center"
                               onClick={() => handlePlayMusic(track)}
                             />
                           )}
                           <FaHeart
-                            size={30}
+                            size={25}
                             onClick={() => unlikeMusic(track.id)}
                           />
                         </div>

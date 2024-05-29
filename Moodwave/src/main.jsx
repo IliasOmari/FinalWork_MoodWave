@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { PrimeReactProvider } from "primereact/api";
-
+import "regenerator-runtime/runtime";
 import App from "./App";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -52,19 +52,20 @@ const router = createBrowserRouter([
   {
     path: "/generate",
     element: <Generate />,
+    loader: getProfileData,
   },
 
   {
-    path: "/playlist-preview",
+    path: "/playlist-preview/:name",
     element: <PlaylistPreview />,
+    loader: getProfileData,
   },
 ]);
-
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <PrimeReactProvider>
-        <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </PrimeReactProvider>
   </React.StrictMode>
 );

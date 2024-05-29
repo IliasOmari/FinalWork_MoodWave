@@ -1,6 +1,7 @@
 import Avatar from "@mui/joy/Avatar";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 import "./post-modules.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,7 +22,23 @@ const Post = ({ data, user }) => {
         navigate("/blog");
       });
   };
-
+  const savePlaylist = (playlist) => {
+    fetch("https://finalwork-moodwave-api.onrender.com/playlist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: user.uuid,
+        playlist,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status == "Bad Request") return alert(data.message);
+        navigate("/blog");
+      });
+  };
   const unlike = () => {
     fetch("https://finalwork-moodwave-api.onrender.com/like", {
       method: "DELETE",
@@ -38,12 +55,17 @@ const Post = ({ data, user }) => {
   };
   return (
     <div className="post-container" style={{ width: "100%" }}>
-      <div className="card">
+      <motion.div
+        className="card"
+        initial={{ opacity: 0, x: -200 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ ease: "easeInOut", duration: 0.7 }}
+        viewport={{ once: true }}
+      >
         <div className="info-user">
           <div className="info-user-text">
-            <Link to={"/profile"}>
-              <Avatar src={data.user.profile_image}></Avatar>
-            </Link>
+            <Avatar src={data.user.profile_image}></Avatar>
+
             <div className="info-user-date">
               <h2>{data.user.username}</h2>
               <p>
@@ -66,10 +88,18 @@ const Post = ({ data, user }) => {
             ) : (
               <FaHeart size={30} onClick={() => unlike()} />
             )}
-            <button className="save">Save playlist</button>
+
+            {!user.playlist.find((el) => el.name == data?.playlist?.name) && (
+              <button
+                className="save"
+                onClick={() => savePlaylist(data.playlist)}
+              >
+                Save playlist
+              </button>
+            )}
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

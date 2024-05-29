@@ -1,10 +1,12 @@
 import Select, { selectClasses } from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
+import { MenuItem } from "@mui/joy";
 
-const SelectIndicator = () => {
+const SelectIndicator = (data) => {
   return (
     <Select
+      onChange={(e) => console.log(e.target.value)}
       placeholder="Select a playlist..."
       indicator={<KeyboardArrowDown />}
       sx={{
@@ -17,10 +19,11 @@ const SelectIndicator = () => {
         },
       }}
     >
-      <Option value="p1">Playlist 1</Option>
-      <Option value="p2">Playlist 2</Option>
-      <Option value="p3">Playlist 3</Option>
-      <Option value="p4">Playlist 4</Option>
+      {data.playlists.map((el) => (
+        <MenuItem key={el.name} value={el.name}>
+          {el.name}
+        </MenuItem>
+      ))}
     </Select>
   );
 };
