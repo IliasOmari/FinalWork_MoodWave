@@ -8,8 +8,8 @@
   padding: 10px;
 }
 .heading {
-  margin-top: 70px;
-  margin-bottom: 70px;
+  margin-top: 50px;
+
   color: white;
   text-align: center;
 }
@@ -18,12 +18,10 @@
 }
 
 .bowl {
-  left: 35px;
-  width: 370px;
-  height: 370px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
-  z-index: 0;
-  position: absolute;
+  margin-top: 80px;
   background: linear-gradient(304deg, #00ff8f, #00a1ff, #d43b84, #ffff00);
   -webkit-animation: Bowlanimation 0s ease infinite;
   animation: Bowlanimation 0s ease infinite;
@@ -60,14 +58,4 @@
   border-radius: 10px;
   width: 100px;
   padding: 10px;
-}
-.step-title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  margin-top: 50px;
-}
-.bowl {
-  margin-top: 50px;
 }

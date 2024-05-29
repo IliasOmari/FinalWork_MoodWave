@@ -291,11 +291,19 @@ const Generate = () => {
             )}
           </Sidebar>
           <div className="generate-container">
-            <div className="generate">
+            <div
+              className="generate"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <div className="heading">
-                <h1>
+                <h2>
                   Hi, <span>{user.username}</span>👋🏻
-                </h1>
+                </h2>
                 <h2>How are you feeling today?</h2>
               </div>
               <div

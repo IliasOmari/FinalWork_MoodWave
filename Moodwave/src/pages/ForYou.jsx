@@ -202,7 +202,7 @@ const ForYou = () => {
           )}
 
           <div className="for-you-container">
-            <div className="intro-text">
+            <div className="intro-text" style={{ marginBottom: "none" }}>
               <h2>Hi {user.username} 👋🏻</h2>
               <p>Discover some songs here!</p>
             </div>

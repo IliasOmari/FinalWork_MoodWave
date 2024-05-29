@@ -247,7 +247,7 @@ const Profile = () => {
                     <div key={like.uuid} className="post-input">
                       <p>{like.text}</p>
                       <div className="post-likes">
-                        <FaHeart size={30} onClick={() => unlike(like.uuid)} />
+                        <FaHeart size={20} onClick={() => unlike(like.uuid)} />
                       </div>
                     </div>
                   ))}
@@ -328,21 +328,21 @@ const Profile = () => {
                         >
                           {selected.name === track.name ? (
                             <FaPause
-                              size={25}
+                              size={20}
                               color="white"
                               alignmentBaseline="center"
                               onClick={handlePauseMusic}
                             />
                           ) : (
                             <FaPlay
-                              size={25}
+                              size={20}
                               color="white"
                               alignmentBaseline="center"
                               onClick={() => handlePlayMusic(track)}
                             />
                           )}
                           <FaHeart
-                            size={25}
+                            size={20}
                             onClick={() => unlikeMusic(track.id)}
                           />
                         </div>
