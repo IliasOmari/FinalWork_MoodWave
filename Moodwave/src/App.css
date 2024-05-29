@@ -25,7 +25,7 @@ html {
   text-align: center;
   color: white;
   font-size: 30px;
-  margin-bottom: 30px;
+  margin-top: -50px;
   font-weight: bolder;
 }
 .welcome span {
@@ -36,6 +36,7 @@ html {
   align-items: center;
   flex-direction: column;
   gap: 1rem;
+  margin-top: 20px;
 }
 .signin {
   background-color: #d43b84;
