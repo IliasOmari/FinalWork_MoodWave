@@ -153,7 +153,7 @@ const PlaylistPreview = () => {
                   alt=""
                 />
                 <h2 style={{ textAlign: "center" }}>
-                  {user.playlistAI.find((el) => el.name == name).name}
+                  {user.playlist.find((el) => el.name == name).name}
                 </h2>
                 <p>
                   {user.playlist.find((el) => el.name == name).playlist.length}{" "}

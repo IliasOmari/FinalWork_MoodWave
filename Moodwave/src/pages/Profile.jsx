@@ -29,6 +29,17 @@ const Profile = () => {
     setSelected(data);
   };
 
+  const logOut = () => {
+    if (localStorage.getItem("id")) {
+      localStorage.removeItem("id");
+      navigate("/");
+      return;
+    }
+    window.open(
+      "https://finalwork-moodwave-api.onrender.com/auth/logout",
+      "_self"
+    );
+  };
   useEffect(() => {
     return () => {
       if (audioRef.current) {
@@ -381,6 +392,9 @@ const Profile = () => {
                 ))
               )}
             </div>
+          </div>
+          <div style={{ textAlign: "center" }} onClick={() => logOut()}>
+            <button className="submit">Logout</button>
           </div>
           <Navbar />
         </>
