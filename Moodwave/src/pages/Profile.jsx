@@ -183,7 +183,7 @@ const Profile = () => {
                     marginBottom: "20px",
                   }}
                 >
-                  No playlists for the moment!
+                  No Ai generated playlists for the moment!
                 </p>
               ) : (
                 user.playlistAI
@@ -221,7 +221,7 @@ const Profile = () => {
                   marginBottom: "20px",
                 }}
               >
-                No playlists for the moment!
+                No saved playlists for the moment!
               </p>
             ) : (
               user.playlist
