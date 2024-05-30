@@ -18,7 +18,7 @@ const ForYou = () => {
   const audioRef = useRef();
   const user = useLoaderData();
   const [tracks, setTracks] = useState([]);
-  const genres = user.genres.map((el) => el.value).join("%2C");
+  const genres = user?.genres?.map((el) => el.value).join("%2C");
   const [selected, setSelected] = useState({});
   const [isPlaying, setIsplaying] = useState(false);
   const [audio, setAudio] = useState(null);
