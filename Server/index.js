@@ -340,6 +340,55 @@ app.delete("/playlist", async (req, res) => {
     await client.close();
   }
 });
+
+app.put("/playlist", async (req, res) => {
+  if (
+    !req.body.name ||
+    !req.body.userId ||
+    !req.body.filter ||
+    !req.body.newName
+  ) {
+    res.status(400).json({
+      status: "Bad Request",
+      message: "Missing data",
+    });
+    return;
+  }
+  try {
+    await client.connect();
+    const colliUser = client.db("moodwave").collection("users");
+    if (req.body.filter == "AI") {
+      await colliUser.findOneAndUpdate(
+        { uuid: req.body.userId },
+        { $set: { "playlistAI.$[element].name": req.body.newName } },
+        { arrayFilters: [{ "element.name": req.body.name }] }
+      );
+      res.status(201).json({
+        status: "Saved",
+        message: "Playlist successfully changed",
+      });
+      return;
+    } else {
+      await colliUser.findOneAndUpdate(
+        { uuid: req.body.userId },
+        { $set: { "playlist.$[element].name": req.body.newName } },
+        { arrayFilters: [{ "element.name": req.body.name }] }
+      );
+      res.status(201).json({
+        status: "Saved",
+        message: "Playlist successfully changed",
+      });
+    }
+    return;
+  } catch (error) {
+    res.status(500).json({
+      error: "something went wrong",
+      value: error,
+    });
+  } finally {
+    await client.close();
+  }
+});
 app.post("/likeMusic", async (req, res) => {
   console.log(req.body);
   if (!req.body.userId || !req.body.music) {

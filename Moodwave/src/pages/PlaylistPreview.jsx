@@ -3,20 +3,30 @@ import Booba from "../assets/booba-2.jpeg";
 import { FaPlay, FaPause } from "react-icons/fa6";
 import Navbar from "../components/Navbar";
 import BackButton from "../assets/backbutton.png";
+import { BeatLoader } from "react-spinners";
+
 import {
   Link,
   Navigate,
   useLoaderData,
   useLocation,
+  useNavigate,
   useParams,
 } from "react-router-dom";
 import { millisecondsToMinutes } from "date-fns";
 import { useRef, useState, useEffect } from "react";
-
+import Modal from "@mui/joy/Modal";
+import ModalClose from "@mui/joy/ModalClose";
+import Typography from "@mui/joy/Typography";
+import Sheet from "@mui/joy/Sheet";
+import { Textarea } from "@mui/joy";
 const PlaylistPreview = () => {
   const user = useLoaderData();
   const { name } = useParams();
+  const [input, setInput] = useState("");
   const { state } = useLocation();
+  const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const audioRef = useRef();
   const [audio, setAudio] = useState(null);
   const [selected, setSelected] = useState({});
@@ -37,7 +47,40 @@ const PlaylistPreview = () => {
     audioRef.current.play();
     setSelected(data);
   };
+  const navigate = useNavigate();
+  const changePlaylist = () => {
+    if (!input) {
+      return alert("Pleae fill in the missing field");
+    }
+    setIsLoading(true);
+    fetch("https://finalwork-moodwave-api.onrender.com/playlist", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
 
+      body: JSON.stringify({
+        newName: input.trim(),
+        userId: user.uuid,
+        filter: state,
+        name:
+          state == "AI"
+            ? user.playlistAI.find((el) => el.name == name).name
+            : user.playlist.find((el) => el.name == name).name,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status == "Saved") {
+          navigate(`/playlist-preview/${input.trim()}`, { state: state });
+          setOpen(false);
+          setIsLoading(false);
+          return;
+        }
+        alert(data.message);
+        setIsLoading(false);
+      });
+  };
   useEffect(() => {
     return () => {
       if (audioRef.current) {
@@ -58,6 +101,69 @@ const PlaylistPreview = () => {
         <Navigate to="/profile" />
       ) : (
         <>
+          <Modal
+            aria-labelledby="modal-title"
+            aria-describedby="modal-desc"
+            open={open}
+            onClose={() => setOpen(false)}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Sheet
+              variant="outlined"
+              sx={{
+                width: "80%",
+                height: "auto",
+                borderRadius: "md",
+                p: 3,
+                boxShadow: "lg",
+                backgroundColor: "#692e65",
+                border: "none",
+                color: "white",
+              }}
+            >
+              <ModalClose variant="plain" sx={{ m: 1 }} />
+              <Typography
+                component="h2"
+                id="modal-title"
+                level="h3"
+                textColor="inherit"
+                fontWeight="lg"
+                textAlign={"center"}
+                fontFamily={"Poppins"}
+                color="white"
+                mb={1}
+              >
+                New Playlist
+              </Typography>
+
+              <Typography
+                id="modal-desc"
+                textColor="white"
+                fontFamily={"Poppins"}
+                marginBottom={"20px"}
+              >
+                <p style={{ marginBottom: "10px" }}>Enter your playlist name</p>
+
+                <Textarea
+                  disabled={false}
+                  minRows={1}
+                  size="lg"
+                  variant="soft"
+                  onChange={(e) => setInput(e.target.value)}
+                />
+              </Typography>
+
+              <div className="submit-button" onClick={() => changePlaylist()}>
+                <button className="submit-post">
+                  {isLoading ? <BeatLoader color="#ffff" /> : "Submit"}
+                </button>
+              </div>
+            </Sheet>
+          </Modal>
           <Link to={"/profile"}>
             <div className="back">
               <img src={BackButton} alt="backbutton" />
@@ -73,7 +179,10 @@ const PlaylistPreview = () => {
                   }
                   alt=""
                 />
-                <h2 style={{ textAlign: "center" }}>
+                <h2
+                  style={{ textAlign: "center" }}
+                  onClick={() => setOpen(true)}
+                >
                   {user.playlistAI.find((el) => el.name == name).name}
                 </h2>
                 <p>
@@ -152,7 +261,10 @@ const PlaylistPreview = () => {
                   }
                   alt=""
                 />
-                <h2 style={{ textAlign: "center" }}>
+                <h2
+                  style={{ textAlign: "center" }}
+                  onClick={() => setOpen(true)}
+                >
                   {user.playlist.find((el) => el.name == name).name}
                 </h2>
                 <p>
