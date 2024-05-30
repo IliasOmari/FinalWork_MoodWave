@@ -4,6 +4,7 @@ html {
 
 .blog {
   height: 100vh;
+  margin-bottom: 300px;
 }
 
 .intro-text h2 {
@@ -45,7 +46,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 .submit-post {
