@@ -10,6 +10,7 @@ import { FaPlay, FaPause } from "react-icons/fa6";
 import { color } from "framer-motion";
 import { BeatLoader } from "react-spinners";
 import { Navigate, useLoaderData } from "react-router-dom";
+import Popup from "../components/Popup";
 
 const Generate = () => {
   const audioRef = useRef();
@@ -311,6 +312,7 @@ const Generate = () => {
                 onClick={() => setVisibleBottom(true)}
               ></div>
             </div>
+
             <Navbar />
           </div>{" "}
         </>

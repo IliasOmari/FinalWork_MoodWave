@@ -2,7 +2,6 @@ import Avatar from "@mui/joy/Avatar";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { motion } from "framer-motion";
-
 import "./post-modules.css";
 import { Link, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
