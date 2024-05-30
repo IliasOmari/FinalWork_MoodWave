@@ -393,7 +393,10 @@ const Profile = () => {
               )}
             </div>
           </div>
-          <div style={{ textAlign: "center" }} onClick={() => logOut()}>
+          <div
+            style={{ textAlign: "center", marginBottom: "100px" }}
+            onClick={() => logOut()}
+          >
             <button className="submit">Logout</button>
           </div>
           <Navbar />
