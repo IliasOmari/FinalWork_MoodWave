@@ -35,6 +35,14 @@ const Generate = () => {
     setSelected(data);
   };
 
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    };
+  }, []);
   const [text, setText] = useState("");
   const [visibleBottom, setVisibleBottom] = useState(false);
   const [playlist, setPlaylist] = useState([]);
