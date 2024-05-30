@@ -39,4 +39,10 @@ router.get("/google/success", async (req, res) => {
   }
 });
 
+router.get("/logout", (req, res) => {
+  req.logout(() => {
+    res.redirect("https://finalwork-moodwave.onrender.com");
+  });
+});
+
 module.exports = router;

@@ -29,6 +29,7 @@ app.use(
     saveUninitialized: false,
     proxy: true,
     cookie: {
+      maxAge: 24 * 60 * 60 * 100,
       httpOnly: true,
       secure: true,
       sameSite: "none",
@@ -67,7 +68,7 @@ app.post("/register", async (req, res) => {
       genres: [],
       likes: [],
       playlist: [],
-      playlistAI:[],
+      playlistAI: [],
       music: [],
       profile_image: null,
       created_at: new Date(),
