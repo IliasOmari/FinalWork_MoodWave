@@ -21,7 +21,6 @@ import ModalClose from "@mui/joy/ModalClose";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
 import { Textarea } from "@mui/joy";
-import { Toaster } from "react-hot-toast";
 const PlaylistPreview = () => {
   const user = useLoaderData();
   const { name } = useParams();
