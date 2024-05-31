@@ -78,7 +78,7 @@ const Generate = () => {
         method: "GET",
         headers: {
           "x-rapidapi-key":
-            "cbb863c29amsh9b878cf8b13e2a1p1e439cjsnd7096005b269",
+            "801d0ddc80mshaeacd3dc64339dfp1e4593jsn074ab7c4b000",
           "x-rapidapi-host": "spotify23.p.rapidapi.com",
         },
       };
