@@ -4,6 +4,7 @@ import { FaPlay, FaPause } from "react-icons/fa6";
 import Navbar from "../components/Navbar";
 import BackButton from "../assets/backbutton.png";
 import { BeatLoader } from "react-spinners";
+import toast, { Toaster } from "react-hot-toast";
 
 import {
   Link,
@@ -20,6 +21,7 @@ import ModalClose from "@mui/joy/ModalClose";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
 import { Textarea } from "@mui/joy";
+import { Toaster } from "react-hot-toast";
 const PlaylistPreview = () => {
   const user = useLoaderData();
   const { name } = useParams();
@@ -50,7 +52,14 @@ const PlaylistPreview = () => {
   const navigate = useNavigate();
   const changePlaylist = () => {
     if (!input) {
-      return alert("Pleae fill in the missing field");
+      return toast.error("Please fill in the missing fields", {
+        duration: 4000,
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+        icon: "✍️",
+      });
     }
     setIsLoading(true);
     fetch("https://finalwork-moodwave-api.onrender.com/playlist", {
