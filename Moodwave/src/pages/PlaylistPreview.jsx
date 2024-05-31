@@ -170,7 +170,7 @@ const PlaylistPreview = () => {
             </div>
           </Link>
           {state == "AI" ? (
-            <div className="playlist">
+            <div className="playlist" style={{ paddingBottom: "100px" }}>
               <div className="playlist-image">
                 <img
                   src={
@@ -252,7 +252,7 @@ const PlaylistPreview = () => {
                 ))}
             </div>
           ) : (
-            <div className="playlist">
+            <div className="playlist" style={{ paddingBottom: "100px" }}>
               <div className="playlist-image">
                 <img
                   src={
