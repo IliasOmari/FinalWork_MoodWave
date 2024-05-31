@@ -203,7 +203,7 @@ const Profile = () => {
               </Sheet>
             </Modal>
 
-            <div className="post">
+            <div className="post" style={{ paddingBottom: "100px" }}>
               {postLoading ? (
                 <BeatLoader color="#ffff" />
               ) : posts.length === 0 ? (

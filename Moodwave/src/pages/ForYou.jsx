@@ -207,7 +207,10 @@ const ForYou = () => {
               <p>Discover some songs here!</p>
             </div>
             <div className="for-you">
-              <div className="recently-played">
+              <div
+                className="recently-played"
+                style={{ paddingBottom: "100px" }}
+              >
                 <h2>Selected for you</h2>
                 {tracks.map((track) => (
                   <div
