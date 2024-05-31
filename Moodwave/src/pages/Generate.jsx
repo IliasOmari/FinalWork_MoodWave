@@ -11,7 +11,6 @@ import { color } from "framer-motion";
 import { BeatLoader } from "react-spinners";
 import { Navigate, useLoaderData } from "react-router-dom";
 import Popup from "../components/Popup";
-import toast from "react-hot-toast";
 import toast, { Toaster } from "react-hot-toast";
 
 const Generate = () => {
