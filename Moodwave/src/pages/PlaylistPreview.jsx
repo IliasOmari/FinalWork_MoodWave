@@ -106,6 +106,7 @@ const PlaylistPreview = () => {
   }, [audio]);
   return (
     <div className="playlist-container">
+      <Toaster position="top-center" reverseOrder={false} />
       {!state ? (
         <Navigate to="/profile" />
       ) : (
