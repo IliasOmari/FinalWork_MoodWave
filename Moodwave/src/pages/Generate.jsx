@@ -114,7 +114,7 @@ const Generate = () => {
         if (data.status == "Saved") {
           resetTranscript();
           setPlaylist([]);
-          toast.success("playlist saved", {
+          toast.success("playlist sucessfully saved", {
             duration: 4000,
             style: {
               background: "#333",

@@ -15,6 +15,7 @@ import Select from "react-select";
 import { BeatLoader } from "react-spinners";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import toast, { Toaster } from "react-hot-toast";
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
@@ -25,7 +26,14 @@ const Profile = () => {
   const [postLoading, setPostLoading] = useState(true);
   const createPost = () => {
     if (!inputs.text || !inputs.mood || !inputs.playlist) {
-      alert("Please fill in the missing fields");
+      toast.error("Please fill in the missing fields", {
+        duration: 4000,
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+        icon: "✍️",
+      });
       return;
     }
 
@@ -67,6 +75,7 @@ const Profile = () => {
   }, []);
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       {!user ? (
         <Navigate to="/login" />
       ) : (
