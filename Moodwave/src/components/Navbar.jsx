@@ -2,9 +2,10 @@ import { RiHome2Line } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa6";
 import { RiAiGenerate } from "react-icons/ri";
 import { TbMusicSearch } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  const { pathname } = useLocation();
   return (
     <div
       style={{
@@ -26,16 +27,32 @@ const Navbar = () => {
         }}
       >
         <Link to={"/blog"}>
-          <RiHome2Line color="white" size={27} />
+          {pathname == "/blog" ? (
+            <RiHome2Line color="#D43B84" size={27} />
+          ) : (
+            <RiHome2Line color="white" size={27} />
+          )}
         </Link>
         <Link to={"/for-you"}>
-          <TbMusicSearch color="white" size={27} />
+          {pathname == "/for-you" ? (
+            <TbMusicSearch color="#D43B84" size={27} />
+          ) : (
+            <TbMusicSearch color="white" size={27} />
+          )}
         </Link>
         <Link to={"/generate"}>
-          <RiAiGenerate color="white" size={27} />
+          {pathname == "/generate" ? (
+            <RiAiGenerate color="#D43B84" size={27} />
+          ) : (
+            <RiAiGenerate color="white" size={27} />
+          )}
         </Link>
         <Link to={"/profile"}>
-          <FaRegUser color="white" size={27} />
+          {pathname == "/profile" ? (
+            <FaRegUser color="#D43B84" size={27} />
+          ) : (
+            <FaRegUser color="white" size={27} />
+          )}
         </Link>
       </div>
     </div>
