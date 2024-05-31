@@ -11,6 +11,8 @@ import { color } from "framer-motion";
 import { BeatLoader } from "react-spinners";
 import { Navigate, useLoaderData } from "react-router-dom";
 import Popup from "../components/Popup";
+import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const Generate = () => {
   const audioRef = useRef();
@@ -113,7 +115,14 @@ const Generate = () => {
         if (data.status == "Saved") {
           resetTranscript();
           setPlaylist([]);
-          alert("playlist saved !!");
+          toast.success("playlist saved", {
+            duration: 4000,
+            style: {
+              background: "#333",
+              color: "#fff",
+            },
+            icon: "✅",
+          });
           return;
         }
       });
@@ -133,6 +142,7 @@ const Generate = () => {
   }
   return (
     <>
+      <Toaster position="top-center" reverseOrder={false} />
       {!user ? (
         <Navigate to="/login" />
       ) : (
