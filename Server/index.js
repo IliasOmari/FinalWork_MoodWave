@@ -102,12 +102,12 @@ app.post("/posts", async (req, res) => {
     await client.connect();
 
     const userColli = client.db("moodwave").collection("users");
-    const user = await userColli.findOne({ uuid: req.body.user.uuid });
+    const user = await userColli.findOne({ uuid: req.body.user });
 
     const playlist = user.playlistAI.find((el) => el.name == req.body.playlist);
     const colli = client.db("moodwave").collection("posts");
     const post = {
-      user: req.body.user,
+      user,
       text: req.body.text,
       mood: req.body.mood,
       playlist,

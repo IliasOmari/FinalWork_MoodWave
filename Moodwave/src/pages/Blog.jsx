@@ -22,6 +22,7 @@ const Profile = () => {
   const [inputs, setInputs] = useState({ mood: "", text: "", playlist: "" });
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [postLoading, setPostLoading] = useState(true);
   const createPost = () => {
     if (!inputs.text || !inputs.mood || !inputs.playlist) {
       alert("Please fill in the missing fields");
@@ -36,7 +37,7 @@ const Profile = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user: user,
+        user: user.uuid,
         text: inputs.text,
         mood: inputs.mood,
         playlist: inputs.playlist,
@@ -53,13 +54,13 @@ const Profile = () => {
       });
   };
 
-
   useEffect(() => {
     async function getPosts() {
       fetch("https://finalwork-moodwave-api.onrender.com/posts")
         .then((res) => res.json())
         .then((data) => {
           setPosts(data.data);
+          setPostLoading(false);
         });
     }
     getPosts();
@@ -203,7 +204,9 @@ const Profile = () => {
             </Modal>
 
             <div className="post">
-              {posts.length === 0 ? (
+              {postLoading ? (
+                <BeatLoader color="#ffff" />
+              ) : posts.length === 0 ? (
                 <p style={{ color: "white" }}>No posts for the moment ! </p>
               ) : (
                 posts
