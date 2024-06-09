@@ -86,7 +86,7 @@ const ForYou = () => {
         method: "GET",
         headers: {
           "X-RapidAPI-Key":
-            "e5f53c1545msh0bddb9823147273p142115jsn541d08fcf2f3",
+            "4f99ecb18bmsh86467b9c588a99dp17658djsn47889005ac80",
           "X-RapidAPI-Host": "spotify23.p.rapidapi.com",
         },
       };
