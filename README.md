@@ -30,7 +30,6 @@ Run Back-End
 cd ./Server nodemon index.js
 ```
 
-
 ## Used Packages
 
 - React Router
@@ -159,7 +158,7 @@ npm install jsonwebtoken
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md] file for details.
 
 ## Sources
 
@@ -167,7 +166,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 - https://www.passportjs.org/docs/
 - https://nodemon.io/
 - https://platform.openai.com/docs/overview
-- https://developer.spotify.com/documentation/web-api/tutorials/getting-started 
+- https://developer.spotify.com/documentation/web-api/tutorials/getting-started
 - https://rapidapi.com/hub
 - https://stackoverflow.com/
-  
