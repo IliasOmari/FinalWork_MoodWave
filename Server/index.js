@@ -306,7 +306,6 @@ app.delete("/playlist", async (req, res) => {
     await client.connect();
     const colliUser = client.db("moodwave").collection("users");
     if (req.body.filter == "AI") {
-      console.log("here");
       await colliUser.updateOne(
         { uuid: req.body.userId },
         {
@@ -454,7 +453,6 @@ app.put("/updateProfile", async (req, res) => {
     const colli = client.db("moodwave").collection("users");
 
     if (req.body.id) {
-      console.log("here");
       await colli.updateOne(
         { uuid: req.body.id },
         {

@@ -1,5 +1,4 @@
 import "./playlistpreview-modules.css";
-import Booba from "../assets/booba-2.jpeg";
 import { FaPlay, FaPause } from "react-icons/fa6";
 import Navbar from "../components/Navbar";
 import BackButton from "../assets/backbutton.png";

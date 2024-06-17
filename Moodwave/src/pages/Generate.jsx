@@ -87,7 +87,6 @@ const Generate = () => {
       try {
         const response = await fetch(url, options);
         const result = await response.json();
-        console.log(result.tracks[0]);
         if (result.tracks[0] == null) return;
         setPlaylist((prev) => [...prev, result.tracks[0]]);
       } catch (error) {
